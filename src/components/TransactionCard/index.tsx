@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React from 'react'
+import { ITransactionCardDataProps } from '../../global/interfaces/ITransactionCardDataProps'
+
+import { ITransactionProps } from '../../global/interfaces/ITransactionProps'
 
 import { 
     Container,
@@ -12,19 +14,26 @@ import {
     Date
  } from './styles'
 
-export function TransactionCard(){
+ interface ITransactionCardProps {
+    data: ITransactionCardDataProps;
+}
+
+export function TransactionCard({data}: ITransactionCardProps){
     return (
         <Container>
-            <Title>Desenvolvimento de sites</Title>      
+            <Title>{data?.title}</Title>
 
-            <Amount>R$ 12.000,00</Amount>            
+            <Amount type={data?.type}>
+                {data?.type === 'negative' && '- '}
+                {data?.amount}
+            </Amount>
             
             <Footer>
                 <Category>
-                    <Icon name='dollar-sign'/>
-                    <CategoryName>Vendas</CategoryName>
+                    <Icon name={data?.category?.icon}/>
+                    <CategoryName>{data?.category?.name}</CategoryName>
                 </Category>
-                <Date>14/04/2021</Date>
+                <Date>{data?.date}</Date>
             </Footer>
         </Container>
     )
