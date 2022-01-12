@@ -29,7 +29,7 @@ const schema = Yup.object().shape({
         .min(3, 'Minimo de 3 caracteres'),
         amount: Yup
         .number()
-        .required('Valor numérico é obrigatório')
+        .required('Preço é obrigatório')
         .typeError('Informe um valor numérico')
         .positive('O valor não pode ser negativo')
 })
@@ -127,7 +127,7 @@ export function Register() {
                             />
 
                     </Fields>
-                    
+
                     <Button 
                         title='Enviar'
                         onPress={handleSubmit(handleRegister)}
